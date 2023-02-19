@@ -32,7 +32,7 @@ class MusicsCubitBuilder extends StatelessWidget {
                 foregroundImage: NetworkImage(music.imageUrl),
               ),
               title: Text(music.name),
-              subtitle: const Text("3 Doors Down, Foo Fighters, Linkin Park"),
+              subtitle: Text("${music.description} / ${music.genre}"),
               contentPadding:
                   const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
             );

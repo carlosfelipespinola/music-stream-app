@@ -1,5 +1,6 @@
 import 'package:awesome_music/cubits/music_player_cubit.dart';
 import 'package:awesome_music/pages/home/musics/musics_page.dart';
+import 'package:awesome_music/pages/home/news/news_page.dart';
 import 'package:awesome_music/pages/home/playlists/playlists_page.dart';
 import 'package:awesome_music/widgets/music_player.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +14,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedPage = 0;
+  int _selectedPage = 1;
 
   static final List<Widget> _pages = <Widget>[
+    const NewsPage(),
     const MusicsPage(),
     const PlaylistsPage()
   ];
@@ -46,6 +48,8 @@ class _HomePageState extends State<HomePage> {
       }),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+              icon: Icon(Icons.newspaper), label: 'Notícias'),
           BottomNavigationBarItem(
               icon: Icon(Icons.play_arrow), label: 'Músicas'),
           BottomNavigationBarItem(
