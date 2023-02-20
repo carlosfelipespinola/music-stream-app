@@ -7,7 +7,8 @@ import 'package:awesome_music/services/local_storage_service/local_storage_servi
 import 'package:http/http.dart' as http;
 
 class ApiClient {
-  final baseHostUrl = "http://localhost:8080";
+  final baseHostUrl = "";
+  final baseAuthHostUrl = "";
   final _localStorageUserKey = 'user';
   final LocalStorageService _localStorageService;
   var client = http.Client();
@@ -25,8 +26,12 @@ class ApiClient {
   }
 
   Future<User> authenticate(String email, String password) async {
-    await Future.delayed(const Duration(seconds: 2));
-    final user = User(name: 'teste', email: email);
+    final response = await client.post(
+        Uri.parse("$baseAuthHostUrl/users/autenticar"),
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode(<String, dynamic>{"email": email, "senha": password}));
+    final decodedResponse = Map.from(jsonDecode(response.body));
+    final user = User(token: decodedResponse["token"], email: email);
     _localStorageService
         .save(_localStorageUserKey, UserLocalStorageAdapter.fromUser(user))
         .then((value) => null)

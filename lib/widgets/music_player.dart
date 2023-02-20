@@ -109,14 +109,12 @@ class _MusicPlayerState extends State<MusicPlayer> with WidgetsBindingObserver {
           ConcatenatingAudioSource(
               shuffleOrder: DefaultShuffleOrder(),
               children: playlist.map((e) {
-                print(e.audioUrl);
                 return AudioSource.uri(Uri.parse(e.audioUrl));
               }).toList()),
           initialIndex: initialIndex,
           preload: true);
       await _player.play();
     } catch (e) {
-      print(e);
       _player.stop();
       showErrorMessage();
     }
@@ -239,7 +237,7 @@ class ControlButtons extends StatelessWidget {
           ],
         ),
         title: Text(state.currentPlayingMusic.name),
-        subtitle: Text(state.currentPlayingMusic.name),
+        subtitle: Text(state.currentPlayingMusic.description),
         contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
       );
     });

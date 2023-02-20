@@ -21,8 +21,16 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-class _LoginForm extends StatelessWidget {
+class _LoginForm extends StatefulWidget {
   const _LoginForm();
+
+  @override
+  State<_LoginForm> createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<_LoginForm> {
+  String email = "";
+  String password = "";
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +41,7 @@ class _LoginForm extends StatelessWidget {
         children: [
           TextFormField(
             decoration: const InputDecoration(label: Text('Email')),
+            onChanged: (value) => email = value,
           ),
           const SizedBox(
             height: 12,
@@ -40,6 +49,7 @@ class _LoginForm extends StatelessWidget {
           TextFormField(
             obscureText: true,
             decoration: const InputDecoration(label: Text('Senha')),
+            onChanged: (value) => password = value,
           ),
           const SizedBox(
             height: 12,
@@ -65,6 +75,6 @@ class _LoginForm extends StatelessWidget {
   }
 
   void _login(BuildContext context) {
-    context.read<AuthCubit>().authenticate('email', 'password');
+    context.read<AuthCubit>().authenticate(email, password);
   }
 }

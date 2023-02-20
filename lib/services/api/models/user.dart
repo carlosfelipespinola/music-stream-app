@@ -1,10 +1,6 @@
 class User {
-  final String name;
   final String email;
+  final String token;
 
-  User({required this.name, required this.email});
-
-  factory User.fromMap(Map<String, dynamic> map) {
-    return User(name: "a", email: "b");
-  }
+  User({required this.token, required this.email});
 }

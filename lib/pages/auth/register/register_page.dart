@@ -55,5 +55,5 @@ class _RegisterForm extends StatelessWidget {
   }
 
   void _register(BuildContext context) =>
-      DefaultTabController.of(context)!.animateTo(0);
+      DefaultTabController.of(context).animateTo(0);
 }
